@@ -1,0 +1,30 @@
+.Container{
+
+    .ContainerDetail{
+        margin-top: 100px;
+        padding: 0 50px;
+        display: flex;
+        .Image img{
+            margin-left: 100px;
+            width: 400px;
+            height: 400px;
+
+        }
+        .DetailItem{
+            padding-left: 80px;
+            .content{
+                .quantityCart{
+                    border-top: 1px solid rgb(238, 238, 238);
+                    margin-top: 80px;
+                    padding-top: 10px;
+                    button{
+                        padding: 5px 20px ;
+                        border: 1px solid ;
+                        background-color: #fff;
+                    }
+                }
+
+            }
+        }
+    }
+}

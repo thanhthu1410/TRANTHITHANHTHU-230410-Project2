@@ -1,50 +1,332 @@
 {
-  "users": [
+
+"users": [
+  {
+    
+        "id":1,
+        "userName": "admin@gmail.com",
+        "password": "123",
+        "isAdmin" : true,
+        "firstName": "Thanh ",
+        "lastName":"Thu",
+        "email":"thanhthu@gmail.com",
+        "avatar" : "https://console.firebase.google.com/project/learnfirebase-b86b8/storage/learnfirebase-b86b8.appspot.com/files/~2FUserAvatar"
+      
+  },
+      {
+    "id": 2,
+    "userName": "ntbphuoc",
+    "password": "123456",
+    "isAdmin": true,
+    "firstName": "Phước",
+    "lastName": "Nguyễn",
+    "email": "thuhuong@gmail.com",
+    "avatar": "https://firebasestorage.googleapis.com/v0/b/learnfirebase-afb02.appspot.com/o/userAvatars%2Fadmin.jpg?alt=media&token=3482a408-7ed1-41c6-b18f-eb730dc02623"
+  }
+],
+"carts": [
+  {
+    "id": 1,
+    "userId": 1,
+    "products": [
+      {
+        "productId": 1,
+        "quantity": 5,
+        "des": "giao lẹ lẹ"
+      }
+    ]
+  }
+],
+"receipts": [
+  {
+    "id": 1,
+    "userId": 1,
+    "totalPrice": 3000,
+    "paid": true,
+    "products": [
+      {
+        "productId": 1,
+        "quantity": 5,
+        "des": "giao lẹ lẹ"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "userId": 1,
+    "totalPrice": 3000,
+    "paid": true,
+    "products": [
+      {
+        "productId": 1,
+        "quantity": 5,
+        "des": "giao lẹ lẹ"
+      }
+    ]
+  }
+],
+
+  "products" : [
     {
-      "block": true,
-      "id": 1
+      "id": 1,
+      "name": "Innocent Love",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo1.jpg",
+      "stock":5
     },
     {
-      "name": "Mèo",
-      "email": "123123",
-      "phoneNumber": "1312",
-      "block": false,
-      "id": 2
+      "id": 2,
+      "name": "Pinkky Love",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo2.jpg",
+      "stock": 4
     },
     {
-      "name": "Tài 121",
-      "email": "ngoctien@gmail.com",
-      "phoneNumber": "121",
-      "block": false,
-      "id": 3
+      "id": 3,
+      "name": "Full Of Loves",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo3.jpg",
+      "stock":3
     },
     {
-      "name": "Tiên",
-      "email": "1312",
-      "phoneNumber": "1212",
-      "block": false,
-      "id": 4
+      "id": 4,
+      "name": "Beautiful Lady",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo8.jpg",
+      "stock": 5
     },
     {
-      "name": "Tài",
-      "email": "112",
-      "phoneNumber": "0329577177",
-      "block": false,
-      "id": 5
+      "id": 5,
+      "name": "First Love",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo4.jpg",
+      "stock": 5
     },
     {
-      "name": "Hương",
-      "email": "asdas",
-      "phoneNumber": "121221",
-      "block": false,
-      "id": 6
+      "id": 6,
+      "name": "Noftalgia",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo5.jpg",
+      "stock": 5
     },
     {
-      "name": "1212",
-      "email": "adas",
-      "phoneNumber": "41324",
-      "block": false,
-      "id": 7
+      "id": 7,
+      "name": "Nostal Love",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo6.jpg",
+      "stock": 5
+    },
+    {
+      "id": 8,
+      "name": "Bubblegum",
+      "price" : 99,
+      "type": "hoabo",
+      "url": "../image/hoabo/bo7.jpg",
+      "stock": 5
+    },
+    {
+      "id": 9,
+      "name": "Bubblegum",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi1.jpg",
+      "stock": 5
+    },
+    {
+      "id": 10,
+      "name": "Love forever",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi2.jpg",
+      "stock": 5
+    },
+    {
+      "id": 11,
+      "name": "Because Of You",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi3.jpg",
+      "stock": 5
+    },
+    {
+      "id": 12,
+      "name": "Best Life",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi4.jpg",
+      "stock": 5
+    },
+    {
+      "id": 13,
+      "name": "True Love",
+      "price" : 189,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi5.jpg",
+      "stock": 5
+    },
+    {
+      "id": 14,
+      "name": "Just Because ",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi6.jpg",
+      "stock": 5
+    },
+    {
+      "id": 15,
+      "name": "Just Because ",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi7.jpg",
+      "stock": 5
+    },
+    {
+      "id": 16,
+      "name": "Just Because ",
+      "price" : 199,
+      "type": "hoacuoi",
+      "url": "../image/hoacuoi/hoacuoi8.jpg",
+      "stock": 5
+    },
+    {
+      "id": 17,
+      "name": "Van Phat",
+      "price" : 299,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan1.jpg",
+      "stock": 5
+    },
+    {
+      "id": 18,
+      "name": "Phuc Loc ",
+      "price" : 299,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan2.jpg",
+      "stock": 5
+    },
+    {
+      "id": 19,
+      "name": "Van Phat ",
+      "price" : 199,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan3.jpg",
+      "stock": 5
+    },
+    {
+      "id": 20,
+      "name": "An Nhien",
+      "price" : 299,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan4.jpg",
+      "stock": 5
+    },
+    {
+      "id": 21,
+      "name": "Tan Tai",
+      "price" : 199,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan5.jpg",
+      "stock": 5
+    },
+    {
+      "id": 22,
+      "name": "Yen Binh",
+      "price" : 199,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan6.jpg",
+      "stock": 5
+    },
+    {
+      "id": 23,
+      "name": "Nhe Nhang ",
+      "price" : 199,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan7.jpg",
+      "stock": 5
+    },
+    {
+      "id": 24,
+      "name": "Tinh Khiet",
+      "price" : 199,
+      "type": "hoalan",
+      "url": "../image/hoalan/lan8.jpg",
+      "stock": 5
+    },
+    {
+      "id": 25,
+      "name": "Spring Talk",
+      "price" : 149,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa1.jpg",
+      "stock": 5
+    },
+    {
+      "id": 26,
+      "name": "Christa",
+      "price" : 149,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa2.jpg",
+      "stock": 5
+    },
+    {
+      "id": 27,
+      "name": "Pinkie Sweet",
+      "price" : 199,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa3.jpg",
+      "stock": 5
+    },
+    {
+      "id": 28,
+      "name": "Hopeful Love",
+      "price" : 149,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa4.jpg",
+      "stock": 5
+    },
+    {
+      "id": 29,
+      "name": "Sweet Heart",
+      "price" : 199,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa5.jpg",
+      "stock": 5
+    },
+    {
+      "id": 30,
+      "name": "Sunset Flloral",
+      "price" : 199,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa6.jpg",
+      "stock": 5
+    },
+    {
+      "id": 31,
+      "name": "Glowings Flowers",
+      "price" : 249,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa7.jpg",
+      "stock": 5
+    },
+    {
+      "id": 32,
+      "name": "Pansy Paradise",
+      "price" : 149,
+      "type": "hophoa",
+      "url": "../image/hophoa/hophoa8.jpg",
+      "stock": 5
     }
+
+
+    
+
+    
   ]
 }

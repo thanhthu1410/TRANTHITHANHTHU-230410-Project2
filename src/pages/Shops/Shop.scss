@@ -1,0 +1,32 @@
+.containerShop{
+
+    .containerAllItem{
+        margin-top: 50px;
+        padding: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+        .Item{
+            margin-bottom: 25px;
+            padding: 10px;
+            border: 1px solid rgb(238, 238, 238);
+            max-width: 23%;
+            .imageItem{
+                img{
+                   width: 100%;
+                }
+            }
+            .itemDetail{
+                text-align: center;
+                .detailButton{
+                    width: 200px;
+                    border: 1px solid black;
+                    padding: 6px 20px;
+                    color: black;
+
+                }
+            }
+        }
+    }
+}
