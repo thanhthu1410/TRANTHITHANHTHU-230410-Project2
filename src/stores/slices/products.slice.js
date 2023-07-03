@@ -9,17 +9,42 @@ const findAllProducts = createAsyncThunk(
     }
 )
 
+const filterProductByType = createAsyncThunk(
+    "filterProductByType",
+    async (type) => {
+        let res = await axios.get(`${process.env.REACT_APP_SERVER_JSON}products?type=${type}`)
+        return res.data
+    }
+)
+const filterProductById = createAsyncThunk(
+    "filterProductById",
+    async (id) => {
+        let res = await axios.get(`${process.env.REACT_APP_SERVER_JSON}products?id=${id}`)
+        return res.data
+    }
+)
+
 const productSlice = createSlice(
     {
         name : "product",
         initialState:{
-            listProducts : [],
-            cart : []
+            listProducts : []
         },
         extraReducers: (builder) => {
             // find all products
             builder.addCase(findAllProducts.fulfilled, (state,action)=>{
+                 state.listProducts = [...action.payload]
+            })
+
+            // filter product by Type
+            builder.addCase(filterProductByType.fulfilled, (state,action)=>{
                 state.listProducts = [...action.payload]
+            })
+
+            builder.addCase(filterProductById.fulfilled, (state,action)=>{
+                console.log("da vao detail");
+              state.listProducts = [...action.payload]
+                
             })
         }
 
@@ -28,6 +53,8 @@ const productSlice = createSlice(
 
 export const productActions = {
     ...productSlice.actions,
-    findAllProducts
+    findAllProducts,
+    filterProductByType,
+    filterProductById
 }
-export default productSlice.reducer;
+export default productSlice.reducer

@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Navbar.scss"
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom/dist'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLoginActions } from '@stores/slices/userLogin.slice';
+
+import Cart from '../../pages/Carts/Cart'
+
 export default function Navbar() {
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const userLoginStore = useSelector(store => store.userLoginStore)
+
+    useEffect(() => {
+        dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
+
+    }, [])
+
     return (
         <div className='HeaderContainer'>
             <div className='logoContainer'>
@@ -23,33 +36,42 @@ export default function Navbar() {
                         data-mdb-toggle="dropdown"
                         aria-expanded="false"
                     >
-                       <span style={{fontSize:"16px"}}> SHOP</span>
+                        <span style={{ fontSize: "16px" }}> SHOP</span>
                     </button>
-                    <ul className="dropdown-menu"  aria-labelledby="dropdownMenuButton" style={{minWidth: "50px"}}>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton" style={{ minWidth: "50px" }}>
                         <Link to="/shop/hoabo">
-                            <a className="dropdown-item" >
-                            Bouquet Flower
-                            </a>
+                            <span className="dropdown-item" >
+                                Bouquet Flower
+                            </span>
                         </Link>
                         <Link to="/shop/hophoa">
-                            <a className="dropdown-item" >
-                            Box Flower
-                            </a>
+                            <span className="dropdown-item" >
+                                Box Flower
+                            </span>
                         </Link>
                         <Link to="/shop/hoalan">
-                            <a className="dropdown-item" >
-                            Orchid Flower
-                            </a>
+                            <span className="dropdown-item" >
+                                Orchid Flower
+                            </span>
                         </Link>
                         <Link to="/shop/hoacuoi">
-                            <a className="dropdown-item" >
-                         Wedding Flower
-                            </a>
+                            <span className="dropdown-item" >
+                                Wedding Flower
+                            </span>
                         </Link>
                     </ul>
                 </Link>
-                <Link to="/cart">  <i className="fa-solid fa-cart-shopping"></i></Link >
-                <Link to="/register"><i className="fa-regular fa-user"></i></Link>
+                <span style={{marginLeft:"25px"}}>  <Cart/> </span>
+                
+                {localStorage.getItem("token") ? (<Link to="/login" onClick={() => {
+                    alert("ban co muon dang xuat khong ")
+                    localStorage.removeItem("token")
+                    dispatch(userLoginActions.logOut())
+                    navigate("/login")
+                }
+                }
+                ><i className="fa-solid fa-right-from-bracket"></i></Link>) :
+                    <Link to="/login" className='registerIcon'><i className="fa-regular fa-user"></i></Link>}
             </ul>
         </div>
     )

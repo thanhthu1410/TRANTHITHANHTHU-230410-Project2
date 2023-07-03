@@ -1,13 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Register.scss"
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { userLoginActions } from '../../stores/slices/userLogin.slice'
+import Loading from '@components/Loadings/Loading'
+import axios from 'axios'
 export default function Register() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userLoginStore = useSelector(store => store.userLoginStore);
+
+  const [loadingCheck , setLoadingCheck] = useState(false);
+  useEffect(() => {
+    if(userLoginStore.userInfor == null ){
+      if(localStorage.getItem("token")){
+        dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
+      }
+    }else{
+      navigate('/')
+    }
+  },[userLoginStore.userInfor])
   return (
     <div>
       <div className="container-all">
+        {
+          userLoginStore.loading || loadingCheck ? <Loading></Loading> : <></>
+        }
         <div className="container-left">
           <h3>REGISTER</h3>
           <h5>NEW CUSTOMERS</h5>
@@ -16,12 +35,49 @@ export default function Register() {
             the checkout process faster, store multiple shipping addresses, view and
             track your orders in your account and more.
           </p>
-          <form action="" onSubmit={()=>{
+          <form action="" onSubmit={async (e)=>{
+            e.preventDefault();
+            if(e.target.inputUserEmail.value == "" || e.target.inputUserName.value == "" || e.target.inputPassword.value == "" ||  e.target.inputRePassword.value == ""){
+              alert("Please Enter Your Information !")
+              return
+            }
+            if( e.target.inputPassword.value !== e.target.inputRePassword.value ){
+              alert("Please Check your Password ")
+              return
+            }
+            if(loadingCheck) {
+              return
+            }
+            setLoadingCheck(true)
+            let resultCheck = await axios.get(process.env.REACT_APP_SERVER_JSON + "users" + "?email=" + e.target.inputUserEmail.value);
+            if(resultCheck.data.length != 0) {
+              console.log(resultCheck.data);
+              alert("This account already exists ");
+              setLoadingCheck(false)
+              return
+            }
+            setLoadingCheck(false)
+            console.log(e.target.inputUserName.value,
+              e.target.inputUserEmail.value
+              );
+            dispatch(userLoginActions.register(
+              {
+                userName : e.target.inputUserName.value,
+                email: e.target.inputUserEmail.value,
+                password : e.target.inputPassword.value,
+                isAdmin:false,
+                firstName : "New",
+                lastName: "Member",
+                avatar : "https://i.pinimg.com/564x/c8/49/d3/c849d35b6502f1e9918b4f1d5e43f10a.jpg",
+                carts : []
+              }
+            ))
             
           }}>
-            <input id="valueEmail" type="text" placeholder="YOUR EMAIL" /> <br />
-            <input id="valuePassword" type="password" placeholder="PASSWORD" /> <br />
-            <input id="confirm" type="password" placeholder="CONFIRM PASSWORD" /> <br />
+            <input id="valueEmail"   name='inputUserEmail'  type="text" placeholder="YOUR EMAIL" /> <br />
+             <input id="valueUserName" name='inputUserName' type="text" placeholder="YOUR NAME" /> <br />
+            <input id="valuePassword" name='inputPassword' type="password" placeholder="PASSWORD" /> <br />
+            <input id="confirm"  name='inputRePassword' type="password" placeholder="CONFIRM PASSWORD" /> <br />
             <button type='submit'>SIGN IN</button>
           </form>
         </div>

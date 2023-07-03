@@ -20,10 +20,23 @@
             .itemDetail{
                 text-align: center;
                 .detailButton{
-                    width: 200px;
-                    border: 1px solid black;
-                    padding: 6px 20px;
-                    color: black;
+                    // width: 200px;
+                    // border: 1px solid black;
+                    // padding: 6px 20px;
+                    // color: black;
+                    
+                    background-color: #fff;
+                    color: #000;
+                    border: 2px solid #000;
+                    padding: 5px 20px;
+                    cursor: pointer;
+                    transition: background-color 0.3s, color 0.3s;
+
+                    /* Hover  */
+                    &:hover {
+                        background-color: #000;
+                        color: #fff;
+                    }
 
                 }
             }
