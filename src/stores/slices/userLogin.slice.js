@@ -102,7 +102,7 @@ const userLoginSlice = createSlice(
             builder.addCase(checkTokenLocal.fulfilled, (state, action) => {
                 //console.log("du lieu khi checktoken", action.payload)
                 let deToken = checkToken(action.payload.token, process.env.REACT_APP_JWT_KEY, process.env.REACT_APP_JWT_KEY);
-                let user = action.payload.users.find(user => user.userName == deToken.userName);
+                let user = action.payload.users.find(user => user.email == deToken.email);
                 if (user) {
                     if (user.password == deToken.password) {
                         state.userInfor = user;

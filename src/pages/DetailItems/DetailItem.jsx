@@ -6,6 +6,7 @@ import { productActions } from '../../stores/slices/products.slice'
 import { convertToUSD } from '@mieuteacher/meomeojs'
 import { Link } from 'react-router-dom'
 import { userLoginActions } from '@stores/slices/userLogin.slice';
+import CartItem from '../Carts/CartItem'
 export default function DetailItem() {
     const { id } = useParams()
     const [quantity, setQuantity] = useState(1)
@@ -123,8 +124,6 @@ export default function DetailItem() {
 
                 </div>
             </div>
-
-
         </div>
     )
 }

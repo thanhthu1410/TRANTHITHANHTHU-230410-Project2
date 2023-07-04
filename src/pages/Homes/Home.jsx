@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import "./Home.scss"
 import Banner from './components/Banners/Banner';
 import Story from './components/Storys/Story';
 import Footer from './components/Footers/Footer';
@@ -7,14 +7,19 @@ import DetailItem from '../DetailItems/DetailItem';
 import Login from '../Logins/Login';
 import { userLoginActions } from '@stores/slices/userLogin.slice';
 import { useDispatch, useSelector } from 'react-redux'
+import { productActions } from '../../stores/slices/products.slice';
 
 export default function Home() {
   const dispatch = useDispatch();
   const userLoginStore = useSelector(store => store.userLoginStore)
-
+ 
+  
   useEffect(() => {
     dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
   }, [])
+
+ 
+
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -58,7 +63,11 @@ export default function Home() {
     }
   }, [])
   return (
-    <div id="home">
+    <div className="home">
+     
+      
+
+     
       <Banner />
       <Story />
       <Footer />

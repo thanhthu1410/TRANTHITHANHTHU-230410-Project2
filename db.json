@@ -8,11 +8,21 @@
       "firstName": "Thanh ",
       "lastName": "Thu",
       "userName": "thanhthu@gmail.com",
-      "avatar": "https://console.firebase.google.com/project/learnfirebase-b86b8/storage/learnfirebase-b86b8.appspot.com/files/~2FUserAvatar",
+      "avatar": "https://cdn.pixabay.com/photo/2019/10/16/09/09/doraemon-4553920_1280.png",
       "carts": [
         {
-          "productId": 1,
-          "quantity": 11,
+          "productId": 2,
+          "quantity": 1,
+          "des": "asasasassas"
+        },
+        {
+          "productId": 3,
+          "quantity": 2,
+          "des": "asasasassas"
+        },
+        {
+          "productId": 26,
+          "quantity": 2,
           "des": "asasasassas"
         }
       ]
@@ -29,7 +39,7 @@
       "carts": []
     },
     {
-      "userName": "tai",
+      "userName": "tai@gmail.com",
       "email": "tai@gmail.com",
       "password": "123",
       "isAdmin": false,
@@ -42,8 +52,24 @@
           "productId": 1,
           "quantity": 4,
           "des": "asasasassas"
+        },
+        {
+          "productId": 31,
+          "quantity": 1,
+          "des": "asasasassas"
         }
       ]
+    },
+    {
+      "userName": "thanh thu ",
+      "email": "thanhthu@gmail.com",
+      "password": "12345",
+      "isAdmin": false,
+      "firstName": "New",
+      "lastName": "Member",
+      "avatar": "https://i.pinimg.com/564x/c8/49/d3/c849d35b6502f1e9918b4f1d5e43f10a.jpg",
+      "carts": [],
+      "id": 4
     }
   ],
   "products": [

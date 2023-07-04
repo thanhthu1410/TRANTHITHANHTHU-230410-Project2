@@ -1,27 +1,37 @@
 
 .HeaderContainer{
+ 
     width: 100%;
     display: flex;
-    justify-content: space-around;
+   
     height: 80px;
     border: 2px solid;
     align-items: center;
     color: black;
-  
     top: 0;
     left: 0;
     position: fixed;
     z-index: 10;
     background-color: #fff;
    
+    .NavRight{
+        display: flex;
+        padding-left: 10px;
+        margin: 0;
+        input{
+            margin-left: 40px; 
+            width: 250px;
+            outline: none;
+            border-bottom:1px solid grey;
+        }
+    }
    
     .NavRight a{
-        margin-left: 50px;
+        margin-left: 20px;
         text-decoration: none;
         color: black;
-        a{
-            color: black;
-        }
+        
+       
        
        .dropdown {
             margin-top: 20px !important;
@@ -46,19 +56,42 @@
     }
     .logoContainer{
         display: flex;
-        height: 100%;
-        width: 30%;
+        height: 80%;
+        width: 20%;
 
      
         .logoImage {
-            width: 200px;
+            width: 230px;
            
             img{
+                padding-left: 40px;
                 width: 100%;
                 height: 100%;
             }
         }
 
+    }
+    .NavCartAccount{
+        display: flex;
+        align-items: center;
+        margin-left: 26%;
+        .avatar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid black;
+            margin: 0 15px;
+            box-sizing: unset;
+            img{
+                height: 30px;
+                width: 30px;
+                object-fit: fill;
+                border-radius: 50%;
+            }
+        }
     }
 }
 
@@ -77,3 +110,34 @@
     /*Without this, clicking will make it sticky*/
       pointer-events: none;
   }
+
+  .searchItem{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    width: 100%;
+    border: 2px solid;
+    min-height: 150px ;
+    .itemSearch{
+        border: 1px solid;
+       
+        width: 20%;
+        margin: 20px;
+        display: flex;
+        .imgItem {
+            width: 50%;
+            img{
+                width: 100%;
+            }
+        }
+        .detailItemSearch{
+            padding: 10px;
+            width: 50%;
+          
+            p{
+                margin-bottom: 0px;
+            }
+        }
+      
+    }
+}

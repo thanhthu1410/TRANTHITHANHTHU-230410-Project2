@@ -9,7 +9,7 @@ import { convertToUSD, randomId } from '@mieuteacher/meomeojs'
 export default function Shop() {
 
   const { type } = useParams()
- console.log(type);
+
   const dispatch = useDispatch();
   const productStore = useSelector(store => store.productStore)
  
@@ -18,7 +18,6 @@ export default function Shop() {
     dispatch(productActions.filterProductByType(type))
   },[type])
 
-  console.log(productStore.listProducts)
 
   return (
     <div>
