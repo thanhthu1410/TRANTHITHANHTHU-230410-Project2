@@ -4,15 +4,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+.containerRegister{
 
-.container-all {
-    width: 80%;
+    background-image: url(../../../public/image/banner/bannerRegister.jpg);
+    .container-all {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 90%;
+    height: 95%;
+    margin: 0 6%;
+    padding: 5%;
     display: flex;
-    height: auto;
-    margin: 150px auto;
+    height: 550px;
     justify-content: space-between;
     font-family: sans-serif
 }
+}
+
 
 .container-left {
     width: 45%;
@@ -44,7 +51,7 @@ p {
     height: 25px;
     border: none;
     outline: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 2px solid rgb(34, 33, 33);
     padding: 10px;
 }
 

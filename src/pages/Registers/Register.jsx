@@ -22,7 +22,7 @@ export default function Register() {
     }
   },[userLoginStore.userInfor])
   return (
-    <div>
+    <div className='containerRegister'>
       <div className="container-all">
         {
           userLoginStore.loading || loadingCheck ? <Loading></Loading> : <></>
@@ -69,7 +69,10 @@ export default function Register() {
                 firstName : "New",
                 lastName: "Member",
                 avatar : "https://i.pinimg.com/564x/c8/49/d3/c849d35b6502f1e9918b4f1d5e43f10a.jpg",
-                carts : []
+                carts : [],
+                information: [],
+                receipt:[]
+                
               }
             ))
             
@@ -78,7 +81,7 @@ export default function Register() {
              <input id="valueUserName" name='inputUserName' type="text" placeholder="YOUR NAME" /> <br />
             <input id="valuePassword" name='inputPassword' type="password" placeholder="PASSWORD" /> <br />
             <input id="confirm"  name='inputRePassword' type="password" placeholder="CONFIRM PASSWORD" /> <br />
-            <button type='submit'>SIGN IN</button>
+            <button type='submit' style={{width:"200px",border:"2px solid black",marginLeft:"100px"}}>SIGN IN</button>
           </form>
         </div>
         <div className="container-right">

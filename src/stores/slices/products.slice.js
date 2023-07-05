@@ -35,6 +35,15 @@ const searchProductByName = createAsyncThunk(
     }
 )
 
+const createReceipt = createAsyncThunk(
+    "createReceipt",
+    async(userObj)=>{
+        console.log(process.env.REACT_APP_SERVER_JSON + 'users/' + userObj.id);
+        let res = await axios.patch(process.env.REACT_APP_SERVER_JSON + 'users/' + userObj.id , userObj.patchData);
+        return res.data
+    }
+)
+
 const productSlice = createSlice(
     {
         name : "product",
@@ -59,10 +68,27 @@ const productSlice = createSlice(
             })
             // search product
             builder.addCase(searchProductByName.fulfilled, (state,action)=>{
-                console.log("da vao searchProductByName",action.payload);
+             
               state.searchData = [...action.payload]
                 
             })
+
+            // checkOut 
+            builder.addCase(createReceipt.pending, (state,action)=>{
+                console.log("pending ");
+                    // return user.receipt = [...action.payload.carts]
+
+            })
+
+            builder.addCase(createReceipt.fulfilled, (state,action)=>{
+                console.log("checkout gio hang ",action.payload);
+                    // return user.receipt = [...action.payload.carts]
+            
+
+        
+                
+            });
+          
         }
 
     }
@@ -73,6 +99,7 @@ export const productActions = {
     findAllProducts,
     filterProductByType,
     filterProductById,
-    searchProductByName
+    searchProductByName,
+    createReceipt
 }
 export default productSlice.reducer

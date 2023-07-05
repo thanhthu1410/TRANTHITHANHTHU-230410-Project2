@@ -2,17 +2,13 @@
 .HeaderContainer{
  
     width: 100%;
+    max-width: 1440px;
     display: flex;
-   
     height: 80px;
-    border: 2px solid;
     align-items: center;
     color: black;
-    top: 0;
-    left: 0;
-    position: fixed;
     z-index: 10;
-    background-color: #fff;
+  
    
     .NavRight{
         display: flex;
@@ -74,7 +70,7 @@
     .NavCartAccount{
         display: flex;
         align-items: center;
-        margin-left: 26%;
+        margin-left: 40%;
         .avatar{
             display: flex;
             justify-content: center;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Navbar.scss"
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom/dist'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLoginActions } from '@stores/slices/userLogin.slice';
@@ -13,7 +13,11 @@ export default function Navbar() {
     const navigate = useNavigate()
     const userLoginStore = useSelector(store => store.userLoginStore)
     const productStore = useSelector(store => store.productStore)
-    const [showSearch,setShowSearch] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
+    const [valueSearch, setValueSearch] = useState("")
+
+
+
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -28,30 +32,29 @@ export default function Navbar() {
         clearTimeout(timeOutTarget); // hủy các timeout đã được đặt trước đó
 
         setTimeOutTarget(setTimeout(() => {
-            // call api
+
 
             if (!userLoginStore.loading) {
-                if (e.target.value != "") {
+                if (valueSearch != "") {
                     setShowSearch(true)
-                    console.log("thay phuoc ne");
                     dispatch(productActions.searchProductByName(e.target.value))
                 }
-                if(e.target.value == ""){
-                     setShowSearch(false)
+                if (valueSearch == "") {
+                    setShowSearch(false)
                 }
-               
+
             }
 
-        }, 1000));
+        }, 500));
     };
 
     useEffect(() => {
         console.log("productStore.searchData", productStore.searchData)
     }, [productStore.searchData])
-   
+
 
     return (
-        <>
+        <div>
             <div className='HeaderContainer'>
                 <div className='logoContainer'>
                     <div className='logoImage'>
@@ -96,17 +99,16 @@ export default function Navbar() {
                         </ul>
                     </Link>
                     <div>
-                        <input onInput={(e) => {
-                            // if( searchQuery !== ""){
-                            //     handleSearchInputChange(e.target.value)
-                            // }
+                        <input value={valueSearch} onInput={(e) => {
                             handleChange(e);
+                            setValueSearch(e.target.value)
                         }
                         } type="text" placeholder='Search ....' />
                     </div>
 
                 </ul>
                 <div className='NavCartAccount' >
+                    <Link to="/admin">ADMIN</Link>
 
                     <span style={{ margin: "0px 10px 10px 0pa" }}>  <Cart /> </span>
 
@@ -134,23 +136,27 @@ export default function Navbar() {
                         <Link to="/login" className='registerIcon'><i style={{ color: "black", padding: "0px 25px 8px 25px" }} className="fa-regular fa-user"></i></Link>}
                 </div>
             </div>
-            {showSearch ? ( <div className='searchItem'>
-              {  productStore.searchData?.map((item) =>
-                <div className='itemSearch'>
-                <div className='imgItem'>
-                    <img src={item.url} alt="" />
-                </div>
-                <div className='detailItemSearch'>
-                    <h6>{item.name}</h6>
-                    <p>Price:{item.price}</p>
-                    <p>In Stock :{item.stock}</p>
-                </div>
-            </div>
-              )}
-                
-            </div>) : <></>}
-           
-        </>
+            {showSearch ?
+                (<div className='searchItem'>
+                    {productStore.searchData?.map((item) =>
+                        <div className='itemSearch'  >
+                            <div className='imgItem'>
+                                <img src={item.url} alt="" />
+                            </div>
+                            <div className='detailItemSearch'>
+                                <h6>{item.name}</h6>
+                                <p>Price:{item.price}</p>
+                                <p>In Stock :{item.stock}</p>
+                                <Link to={"/detail/" + `${item.id}`} onClick={() => {
+                                    setShowSearch(false);
+                                    setValueSearch("")
+                                }}>Detail</Link>
+                            </div>
+                        </div>
+                    )}
+
+                </div>) : <></>}
+        </div>
 
     )
 }

@@ -7,50 +7,56 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userLoginActions } from '../../stores/slices/userLogin.slice';
 import { productActions } from '../../stores/slices/products.slice';
 import CartItem from './CartItem';
+import { useNavigate } from 'react-router-dom';
+import { convertToUSD } from '@mieuteacher/meomeojs';
+import { message } from 'antd';
+import {RadiusUprightOutlined,} from '@ant-design/icons';
+import CartItemLocal from './CartItemLocal';
 // import CartItem from './CartItem';
 
 function Cart() {
-  const [quantity,setQuantity] = useState(1)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [cartData, setCartData] = useState([])
+  const [cartsLocal, setCartsLocal] = useState(() => JSON.parse(localStorage.getItem("carts")));
+
+  const cartsLocalStore = useSelector(store => store.cartsLocalStore);
+
   const dispatch = useDispatch();
   const userLoginStore = useSelector(store => store.userLoginStore)
-  const productStore = useSelector(store => store.productStore)
-  const [cartData, setCartData] = useState(userLoginStore.userInfor?.carts || []);
-
+  const navigate = useNavigate()
+  
   useEffect(() => {
     dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
-    dispatch(productActions.findAllProducts())
   }, [])
 
-  useEffect(() =>{
-    
-    if (userLoginStore.userInfor != null && productStore.listProducts.length > 0 ) {
+  useEffect(() => {
+   
 
-        let carts = [...userLoginStore.userInfor.carts]
-        let  listProducts = productStore.listProducts
-          for (let i = 0; i < carts.length; i++) {
-          
-            for (let j = 0; j < listProducts.length; j++) {
-                if (carts[i].productId == listProducts[j].id) {
-                    carts[i] = Object.assign({}, carts[i], { url: listProducts[j].url });
-                    carts[i] = Object.assign({}, carts[i], { price: listProducts[j].price });
-                    carts[i] = Object.assign({}, carts[i], { name: listProducts[j].name });
-                }
-            }
-            setCartData(carts)
-        }
-     
+    if (userLoginStore.userInfor != null) {
 
-        
+      let carts = [...userLoginStore.userInfor.carts]
+
+      setCartData(carts)
     }
+   
+ 
   }, [userLoginStore.userInfor])
+  const totalQuantity = cartData.reduce((accumulator, product) => Number(accumulator) + Number(product.quantity ), 0)
+  const totalPrice = cartData.reduce((accumulator, product) => Number(accumulator) + Number(product.quantity * product.price), 0)
+ console.log(totalPrice,"totalPrice");
 
+ 
+
+  
   return (
     <>
-      <Button variant="primary" onClick={handleShow} style={{backgroundColor:"#fff",color:"black",border:"none",width:"30px"} }>
-      <i  className="fa-solid fa-cart-shopping"></i>
+      <Button variant="primary" onClick={handleShow} style={{ backgroundColor: "#fff", color: "black", border: "none", width: "30px" }}>
+       <div style={{display:"flex",position:"relative"}}>
+       <i className="fa-solid fa-cart-shopping"></i>
+        <span className='quantityItem' style={{position:"absolute", left:"18px",bottom:"3px"}}>{totalQuantity}</span>
+       </div>
       </Button>
 
       <Modal show={show} onHide={handleClose} size="lg">
@@ -59,31 +65,32 @@ function Cart() {
         </Modal.Header>
         <Modal.Body>
           <div>
-            {/* {
-              cartData.map((item) => <CartItem item={item}/>)
-            } */}
-         
-            {cartData.map((item) => <CartItem item={item}/>
-              
-            ) 
-                
-            }
-             
-             <div className='total'>
-                <p style={{ fontSize: "12px" }}>
-                    FREE SHIPPING IN US FOR ORDERS OVER $200.00 USD</p>
-                <p>Total : 3</p>
-                <p>Total Price: 100</p>
+            {cartsLocal ? (cartsLocalStore.map(item => <CartItemLocal item={item} setCartData={setCartData}/>)) :
+            (cartData?.map((item) => <CartItem item={item} setCartData={setCartData} cartData={cartData}/>))
+          }
+            <div className='total' style={{paddingLeft:"40px"}}>
+              <p style={{ fontSize: "12px" }}>
+                FREE SHIPPING IN US FOR ORDERS OVER $200.00 USD</p>
+              <p style={{marginBottom:"0"}}>Total : {totalQuantity}</p>
+              <p>ODER TOTAL: {convertToUSD(totalPrice)} </p>
             </div>
           </div>
-        
+
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+          <Button variant="secondary" onClick={handleClose} style={{backgroundColor:"#fff",color:"black"}}>
+            COUNTINUE
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary"  style={{backgroundColor:"black",color:"#fff"}} onClick={()=>{
+            if(userLoginStore.userInfor != null){
+              handleClose(); 
+              navigate("/checkout")
+            }else{
+             alert("Please check your Account")
+              return
+            }
+         } }>
+            CHECK OUT
           </Button>
         </Modal.Footer>
       </Modal>

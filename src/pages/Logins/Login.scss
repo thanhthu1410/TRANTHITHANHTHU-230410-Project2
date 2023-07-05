@@ -4,12 +4,16 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.divContainerLogin{
+    height: 500px;
+    background-image: url(../../../public/image/banner/banner1.jpg);
+}
 .container-all {
-    width: 80%;
+    padding: 5% ;
+    width: 90%;
     display: flex;
     height: auto;
-    margin: 150px auto;
+ 
     justify-content: space-between;
     font-family: sans-serif
 }
@@ -34,7 +38,7 @@ h5 {
 }
 
 p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.4;
 }
 
@@ -44,7 +48,7 @@ p {
     height: 25px;
     border: none;
     outline: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(10, 7, 7);
     padding: 10px;
 }
 
@@ -54,6 +58,7 @@ button {
     padding: 5px;
     background-color: white;
     color: black;
+    border: 2px solid;
 
 }
 

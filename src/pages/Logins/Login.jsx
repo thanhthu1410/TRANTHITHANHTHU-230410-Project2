@@ -25,7 +25,7 @@ export default function Login() {
   }, [userLoginStore.userInfor])
 
   return (
-    <div>
+    <div className="divContainerLogin">
       <div className="container-all">
       {
                 userLoginStore.loading ? <Loading></Loading> : <></>
@@ -43,20 +43,20 @@ export default function Login() {
           <form action="" onSubmit={(eventForm) => {
             eventForm.preventDefault(); // vô hiệu hành vi mặc định form
 
-            if (eventForm.target.inputUserName.value == "" || eventForm.target.inputPassword.value == "") {
+            if (eventForm.target.inputUserEmail.value == "" || eventForm.target.inputPassword.value == "") {
               alert("vui lòng điền đầy đủ các trường")
               return
             }
 
             dispatch(userLoginActions.login(
               {
-                userName: eventForm.target.inputUserName.value,
+                email: eventForm.target.inputUserEmail.value,
                 password: eventForm.target.inputPassword.value
               }
             ))
 
           }} className='login_form'>
-            <input id="valueEmail" type="email" placeholder="EMAIL ADDRESS" name="inputUserName" /> <br />
+            <input id="valueEmail" type="email" placeholder="EMAIL ADDRESS" name="inputUserEmail" /> <br />
             <p className="validexEmail">Pleas check your email</p>
             <input id="valuePassword" type="password" placeholder="PASSWORD" name="inputPassword"/> <br />
             <button type="submit">SIGN IN</button>
@@ -74,7 +74,7 @@ export default function Login() {
             track your orders in your account, and more
           </p>
           <button className="buttonnext" >
-            <Link to="/register">PROCEED TO REGISTER</Link>
+            <Link style={{color:"black"}} to="/register">PROCEED TO REGISTER</Link>
           </button>
         </div>
       </div>

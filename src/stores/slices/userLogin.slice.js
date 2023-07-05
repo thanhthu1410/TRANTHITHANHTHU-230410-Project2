@@ -1,4 +1,5 @@
 import axios from "axios";
+import {  message} from 'antd';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const CryptoJS = require("crypto-js");
 
@@ -81,12 +82,13 @@ const userLoginSlice = createSlice(
         extraReducers: (builder) => {
             // login
             builder.addCase(login.fulfilled, (state, action) => {
-                let user = action.payload.users.find(user => user.userName == action.payload.inforLogin.userName);
+                let user = action.payload.users.find(user => user.email == action.payload.inforLogin.email);
                 if (!user) {
-                    alert("Không tìm thấy người dùng")
+                    message.error("Không tìm thấy người dùng",1)
+                  
                 } else {
                     if (user.password != action.payload.inforLogin.password) {
-                        alert("Mật khẩu không chính xác")
+                        message.error("Please check your password",1)
                     } else {
                         state.userInfor = user; // cập nhật lại state
                         // tạo token và lưu vào local storage
@@ -132,10 +134,7 @@ const userLoginSlice = createSlice(
                 (state, action) => {
                     if (action.meta) {
                         if (action.meta.requestStatus == "pending") {
-                            //console.log("đã vào pending của api: ", action.type)
-                            // if (action.type == "deleteUserByid/pending") {
-                            //     console.log("trường hợp pending của api delete")
-                            // }
+                           
                             state.loading = true;
                         }
                         if (action.meta.requestStatus == "rejected") {

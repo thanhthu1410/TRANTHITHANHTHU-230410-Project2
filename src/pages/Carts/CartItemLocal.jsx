@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import "./Cart.scss"
 import { useDispatch, useSelector } from 'react-redux';
 import { userLoginActions } from '../../stores/slices/userLogin.slice';
+import { cartsActions } from '../../stores/slices/cart.slice';
 
-export default function CartItem({ item, setCartData, cartData }) {
+export default function CartItemLocal({ item, setCartData, cartData }) {
     const [quantity,setQuantity] = useState(item.quantity)
     const dispatch = useDispatch();
 
@@ -35,29 +36,8 @@ export default function CartItem({ item, setCartData, cartData }) {
         ))
     }
 
-    function handleChangeQuantityProduct(productCart) {
-        let updatedCart = cartData.map((product) => {
-            if (product.productId === productCart.productId) {
-                return productCart;
-            } else {
-                return product;
-            }
-        });
-
-        dispatch(
-            userLoginActions.updateCart({
-                userId: userLoginStore.userInfor.id,
-                carts: {
-                    carts: updatedCart,
-                },
-            })
-        );
-    }
-
     return (
         <div style={{ border: "1px solid" }} className='itemContainer'>
-
-
             <div className='item'>
                 <div className='itemImage'>
                     <img src={item?.url} alt="" />
@@ -67,32 +47,28 @@ export default function CartItem({ item, setCartData, cartData }) {
                     <p>Price:{item?.price}</p>
                     <div className='quantity'>
                         <i class="fa-solid fa-plus"  onClick={()=>{setQuantity(quantity + 1)
-                            handleChangeQuantityProduct({
+                         dispatch(cartsActions.updateItemInCart(
+                            {
                                 ...item,
                                 quantity: quantity + 1
-                            })
+                            }
+                        ))
                         }}></i>
                         <span style={{ padding: "0 10px" }}>{quantity}</span>
                         <i class="fa-solid fa-minus"  onClick={()=>{if(quantity > 1){
                             setQuantity(quantity - 1)
-                            handleChangeQuantityProduct({
-                                ...item,
-                                quantity: quantity - 1
-                            })
+                            dispatch(cartsActions.updateItemInCart(
+                                {
+                                    ...item,
+                                    quantity: quantity - 1
+                                }
+                            ))
                         }
                         }}></i>
                     </div>
-
                 </div>
-                <div onClick={() => handleDeleteProduct(item.productId)}><i class="fa-solid fa-trash-can"></i></div>
+                <div onClick={() => dispatch(cartsActions.deleteItemInCart(item.productId))}><i class="fa-solid fa-trash-can"></i></div>
             </div>
-
-
-
-           
-
-
-
         </div>
     )
 }

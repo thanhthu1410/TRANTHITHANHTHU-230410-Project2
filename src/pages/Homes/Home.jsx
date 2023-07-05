@@ -8,6 +8,7 @@ import Login from '../Logins/Login';
 import { userLoginActions } from '@stores/slices/userLogin.slice';
 import { useDispatch, useSelector } from 'react-redux'
 import { productActions } from '../../stores/slices/products.slice';
+import Admin from '../Admins/Admin';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -17,9 +18,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
   }, [])
-
- 
-
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -64,14 +62,10 @@ export default function Home() {
   }, [])
   return (
     <div className="home">
-     
-      
-
-     
       <Banner />
       <Story />
       <Footer />
-      {/* <Login/> */}
+     
     </div>
   )
 }

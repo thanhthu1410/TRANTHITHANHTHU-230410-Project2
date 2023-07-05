@@ -1,0 +1,47 @@
+.containerCheckOut {
+   
+    width: 100%;
+    display: flex;
+    background-image: url(../../../../public/image/banner/banner4.jpg);
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    .container-two {
+        border: 2px solid black;
+        width: 80%;
+        border-radius: 8px;
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.5);
+
+        .inforDelivery {
+            padding: 5%;
+            width: 50%;
+            input {
+                margin-bottom: 10px;
+                padding: 5px;
+                width: 80%;
+                border-bottom: 1px solid black;
+                outline: none;
+            }
+        }
+        .inforDelivery-right{
+            padding: 5%;
+            width: 50%;
+            input {
+                margin-bottom: 10px;
+                padding: 5px;
+                width: 80%;
+                border-bottom: 1px solid black;
+                outline: none;
+            }
+            .buttonCheckOut{
+                margin-top: 25px;
+                width: 80%;
+                padding: 5px;
+                background-color: black;
+                color: #fff;
+            }
+        }
+    }
+}

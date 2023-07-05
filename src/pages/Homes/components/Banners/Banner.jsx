@@ -27,7 +27,7 @@ export default function Banner() {
       <Carousel
         ref={slider}
         autoplay
-        autoplaySpeed={1000}
+        autoplaySpeed={2000}
         effect={"fade"}
         dots={true}
         dotPosition={"bottom"}
