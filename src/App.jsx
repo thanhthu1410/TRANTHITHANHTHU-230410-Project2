@@ -4,6 +4,7 @@ import LazyLoad from './LazyLoad'
 import Navbar from '@components/Navbars/Navbar'
 
 function App() {
+
   return (
     <div className="App">
       <div className="nav-container">

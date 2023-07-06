@@ -9,6 +9,7 @@ const store = configureStore(
             productStore: productReducer,
             userLoginStore: userLoginReducer,
             cartsLocalStore: cartsReducer
+
         }
     }
 )

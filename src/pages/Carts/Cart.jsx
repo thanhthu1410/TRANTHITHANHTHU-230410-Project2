@@ -45,15 +45,10 @@ function Cart() {
   }, [userLoginStore.userInfor])
   const totalQuantity = cartData.reduce((accumulator, product) => Number(accumulator) + Number(product.quantity ), 0)
   const totalPrice = cartData.reduce((accumulator, product) => Number(accumulator) + Number(product.quantity * product.price), 0)
- console.log(totalPrice,"totalPrice");
-
- 
-
-  
   return (
     <>
       <Button variant="primary" onClick={handleShow} style={{ backgroundColor: "#fff", color: "black", border: "none", width: "30px" }}>
-       <div style={{display:"flex",position:"relative"}}>
+       <div style={{display:"flex",position:"relative",marginBottom:"11px"}}>
        <i className="fa-solid fa-cart-shopping"></i>
         <span className='quantityItem' style={{position:"absolute", left:"18px",bottom:"3px"}}>{totalQuantity}</span>
        </div>
@@ -64,6 +59,7 @@ function Cart() {
           <Modal.Title>SHOPPING BAG</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div>No item in your carts</div>
           <div>
             {cartsLocal ? (cartsLocalStore.map(item => <CartItemLocal item={item} setCartData={setCartData}/>)) :
             (cartData?.map((item) => <CartItem item={item} setCartData={setCartData} cartData={cartData}/>))

@@ -15,6 +15,14 @@ const login = createAsyncThunk(
     }
 )
 
+const getAllUsers = createAsyncThunk(
+    "getAllUsers",
+    async () => {
+        let res = await axios.get(process.env.REACT_APP_SERVER_JSON + 'users');
+        return res.data
+    }
+)
+
 const checkTokenLocal = createAsyncThunk(
     "checkTokenLocal",
     async (token) => {
@@ -70,7 +78,8 @@ const userLoginSlice = createSlice(
         name: "userLogin",
         initialState: {
             loading: false,
-            userInfor: null
+            userInfor: null,
+            listUsers : []
         },
         reducers: {
             logOut : (state,action) => {
@@ -124,6 +133,14 @@ const userLoginSlice = createSlice(
                 let token = createToken(action.payload, process.env.REACT_APP_JWT_KEY);
                 localStorage.setItem("token", token);
             });
+            //get All user 
+            builder.addCase(getAllUsers.fulfilled, (state,action)=>{
+                console.log(action.payload,"getAllUsers");
+                state.listUsers =  [...action.payload]
+                // state.users = [...action.payload]
+           })
+
+
             // xử lý các pending và rejected
             builder.addMatcher(
                 (action) => {
@@ -159,6 +176,7 @@ export const userLoginActions = {
     login,
     checkTokenLocal,
     updateCart,
-    register
+    register,
+    getAllUsers
 }
 export default userLoginSlice.reducer;

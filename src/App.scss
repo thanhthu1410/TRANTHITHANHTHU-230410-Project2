@@ -18,13 +18,13 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        border-bottom: 1px solid black;
         align-items: center;
         height: 80px;
         position: sticky;
         top: 0;
         z-index: 11;
         background-color: #fff;
+
 
         .nav-contents {
             display: flex;
@@ -33,6 +33,7 @@
             max-width: 1440px;
             height: 100%;
             border: 2px solid black;
+            position: relative;
             
         }
     }

@@ -51,6 +51,14 @@ const productSlice = createSlice(
             listProducts : [],
             searchData : [],
         },
+        reducers: {
+            clearDataSearch: (state, action) => {
+                return {
+                    ...state,
+                    searchData:[]
+                }
+            }
+        },
         extraReducers: (builder) => {
             // find all products
             builder.addCase(findAllProducts.fulfilled, (state,action)=>{
@@ -64,7 +72,7 @@ const productSlice = createSlice(
 
             builder.addCase(filterProductById.fulfilled, (state,action)=>{
               state.listProducts = [...action.payload]
-                
+            console.log("action.payload", action.payload)
             })
             // search product
             builder.addCase(searchProductByName.fulfilled, (state,action)=>{

@@ -35,6 +35,7 @@ export default function CartItem({ item, setCartData, cartData }) {
         ))
     }
 
+    
     function handleChangeQuantityProduct(productCart) {
         let updatedCart = cartData.map((product) => {
             if (product.productId === productCart.productId) {

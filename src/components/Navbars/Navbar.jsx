@@ -17,8 +17,6 @@ export default function Navbar() {
     const [valueSearch, setValueSearch] = useState("")
 
 
-
-
     useEffect(() => {
         if (localStorage.getItem("token")) {
             dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")));
@@ -35,13 +33,18 @@ export default function Navbar() {
 
 
             if (!userLoginStore.loading) {
-                if (valueSearch != "") {
+              
+                if (e.target.value != "") {
+                    console.log("da vao")
                     setShowSearch(true)
                     dispatch(productActions.searchProductByName(e.target.value))
-                }
-                if (valueSearch == "") {
+                }else{
                     setShowSearch(false)
+                    dispatch(productActions.searchProductByName(e.target.value))
+                    dispatch(productActions.clearDataSearch())
+                    return
                 }
+               
 
             }
 
@@ -101,14 +104,17 @@ export default function Navbar() {
                     <div>
                         <input value={valueSearch} onInput={(e) => {
                             handleChange(e);
-                            setValueSearch(e.target.value)
+                           setValueSearch(e.target.value)
                         }
                         } type="text" placeholder='Search ....' />
                     </div>
 
                 </ul>
                 <div className='NavCartAccount' >
-                    <Link to="/admin">ADMIN</Link>
+                    {userLoginStore.userInfor != null && userLoginStore.userInfor.isAdmin == true ?   <Link to="/admin"><span style={{color:"black"}} class="material-symbols-outlined">
+admin_panel_settings
+</span></Link> : <></> }
+                  
 
                     <span style={{ margin: "0px 10px 10px 0pa" }}>  <Cart /> </span>
 
@@ -137,7 +143,7 @@ export default function Navbar() {
                 </div>
             </div>
             {showSearch ?
-                (<div className='searchItem'>
+                (<div className='searchItem' style={{position:"absolute", top: "-20px",backgroundColor:"#fff"}}>
                     {productStore.searchData?.map((item) =>
                         <div className='itemSearch'  >
                             <div className='imgItem'>

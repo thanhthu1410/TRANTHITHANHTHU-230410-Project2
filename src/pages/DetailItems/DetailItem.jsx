@@ -15,16 +15,17 @@ export default function DetailItem() {
     const dispatch = useDispatch();
     const productStore = useSelector(store => store.productStore);
     const userLoginStore = useSelector(store => store.userLoginStore);
-
+    const [product, setProduct] = useState();
     useEffect(() => {
         dispatch(productActions.filterProductById(id))
+    }, [id])
+
+    useEffect(() => {
         dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
     }, [])
 
-    const product = productStore.listProducts[[0]]
-
     function addToCart(buyItem) {
-        console.log("da vao add");
+     
         if (localStorage.getItem("token")) {
 
 
@@ -83,6 +84,22 @@ export default function DetailItem() {
             localStorage.setItem("carts", JSON.stringify(carts));
         }
     }
+
+    useEffect(() =>{
+        setProduct(productStore.listProducts[[0]])
+    }, [productStore])
+
+    function getCurrentTime() {
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        var currentTime = hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " " + ampm + " " + date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+        return currentTime;
+      }
+      let time = getCurrentTime()
     return (
         <div className="Container">
             <div className="ContainerDetail">
@@ -114,10 +131,11 @@ export default function DetailItem() {
                                         {
                                             productId: product.id,
                                             quantity: quantity,
-                                            des: "hello baby",
+                                            des: "hello baby 10000",
                                             url: product.url,
                                             name : product.name,
-                                            price: product.price
+                                            price: product.price,
+                                            time : time
                                         }
                                     )
                                     message.success("da them san pham vao gio hang")

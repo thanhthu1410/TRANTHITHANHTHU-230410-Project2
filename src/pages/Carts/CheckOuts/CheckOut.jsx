@@ -5,11 +5,12 @@ import "./CheckOut.scss"
 import {  message} from 'antd';
 import { useNavigate } from 'react-router-dom';
 export default function CheckOut() {
-    const [name,setName] = useState("")
-    const [phone,setPhone] = useState("")
-    const [address,setAddress] = useState("")
-    const[date,setDate] = useState("")
     const userLoginStore = useSelector(store => store.userLoginStore)
+    const [name,setName] = useState(userLoginStore.userInfor.information.length > 0 ? userLoginStore.userInfor.information[0].name : "")
+    const [phone,setPhone] = useState(userLoginStore.userInfor.information.length > 0 ? userLoginStore.userInfor.information[0].phone : "")
+    const [address,setAddress] = useState(userLoginStore.userInfor.information.length > 0 ? userLoginStore.userInfor.information[0].address : "" )
+    const[date,setDate] = useState("")
+   
     const [email,setEmail] = useState(userLoginStore.userInfor.email)
     const dispatch = useDispatch()
     const navigate =  useNavigate()
@@ -18,6 +19,13 @@ export default function CheckOut() {
         console.log("thu ne ", userLoginStore.userInfor);
 
     }, [])
+
+    if(userLoginStore.userInfor.information.length > 0){
+        console.log("information",userLoginStore.userInfor.information[0].address);
+    }else{
+        console.log("khong co lich su ");
+        return
+    }
     return (
         <div className='containerCheckOut'>
         
