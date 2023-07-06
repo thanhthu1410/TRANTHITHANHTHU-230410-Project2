@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { userLoginActions } from '@stores/slices/userLogin.slice';
 import CartItem from '../Carts/CartItem'
 import {  message} from 'antd';
+import { cartsActions } from '../../stores/slices/cart.slice'
 export default function DetailItem() {
     const { id } = useParams()
     const [quantity, setQuantity] = useState(1)
@@ -15,6 +16,7 @@ export default function DetailItem() {
     const dispatch = useDispatch();
     const productStore = useSelector(store => store.productStore);
     const userLoginStore = useSelector(store => store.userLoginStore);
+    // const [carlLocal,setCartsLocal] = useState(localStorage.getItem("carts") || [])
     const [product, setProduct] = useState();
     useEffect(() => {
         dispatch(productActions.filterProductById(id))
@@ -23,6 +25,9 @@ export default function DetailItem() {
     useEffect(() => {
         dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
     }, [])
+    useEffect(()=>{
+        dispatch(cartsActions.followCartLocal())
+    },[localStorage.getItem("carts") || userLoginStore.userInfor ])
 
     function addToCart(buyItem) {
      
@@ -65,7 +70,7 @@ export default function DetailItem() {
         if (localStorage.getItem("carts")) {
             // đã từng có giỏ hàng
             let carts = JSON.parse(localStorage.getItem("carts"));
-            console.log(carts);
+            // console.log(carts);
             let flag = false;
             carts.map(item => {
                 if (item.productId == buyItem.productId) {
@@ -77,10 +82,12 @@ export default function DetailItem() {
             if (!flag) {
                 carts.push(buyItem)
             }
+            dispatch(cartsActions.updateCartLocal(carts));
             localStorage.setItem("carts", JSON.stringify(carts));
         } else {
             // chưa từng có
             let carts = [buyItem]
+            dispatch(cartsActions.updateCartLocal(carts));
             localStorage.setItem("carts", JSON.stringify(carts));
         }
     }
@@ -138,7 +145,8 @@ export default function DetailItem() {
                                             time : time
                                         }
                                     )
-                                    message.success("da them san pham vao gio hang")
+                                    // dispatch(cartsActions.followCartLocal());
+                                    message.success("Success!")
                                     setQuantity(1)
                                 }} >ADD TO CART
                             </button>

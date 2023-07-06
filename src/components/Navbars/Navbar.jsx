@@ -7,6 +7,7 @@ import { userLoginActions } from '@stores/slices/userLogin.slice';
 
 import Cart from '../../pages/Carts/Cart'
 import { productActions } from '../../stores/slices/products.slice'
+import SearchModal from '../SearchModal/SearchModal'
 
 export default function Navbar() {
     const dispatch = useDispatch()
@@ -33,18 +34,18 @@ export default function Navbar() {
 
 
             if (!userLoginStore.loading) {
-              
+
                 if (e.target.value != "") {
                     console.log("da vao")
                     setShowSearch(true)
                     dispatch(productActions.searchProductByName(e.target.value))
-                }else{
+                } else {
                     setShowSearch(false)
                     dispatch(productActions.searchProductByName(e.target.value))
                     dispatch(productActions.clearDataSearch())
                     return
                 }
-               
+
 
             }
 
@@ -75,6 +76,7 @@ export default function Navbar() {
                             id="dropdownMenuButton"
                             data-mdb-toggle="dropdown"
                             aria-expanded="false"
+                            style={{marginTop:"4px"}}
                         >
                             <span style={{ fontSize: "16px" }}> SHOP</span>
                         </button>
@@ -101,20 +103,16 @@ export default function Navbar() {
                             </Link>
                         </ul>
                     </Link>
-                    <div>
-                        <input value={valueSearch} onInput={(e) => {
-                            handleChange(e);
-                           setValueSearch(e.target.value)
-                        }
-                        } type="text" placeholder='Search ....' />
+                    <div className='search-button'>
+                        <SearchModal/>
                     </div>
 
                 </ul>
                 <div className='NavCartAccount' >
-                    {userLoginStore.userInfor != null && userLoginStore.userInfor.isAdmin == true ?   <Link to="/admin"><span style={{color:"black"}} class="material-symbols-outlined">
-admin_panel_settings
-</span></Link> : <></> }
-                  
+                    {userLoginStore.userInfor != null && userLoginStore.userInfor.isAdmin == true ? <Link to="/admin"><span style={{ color: "black" }} class="material-symbols-outlined">
+                        admin_panel_settings
+                    </span></Link> : <></>}
+
 
                     <span style={{ margin: "0px 10px 10px 0pa" }}>  <Cart /> </span>
 
@@ -125,7 +123,7 @@ admin_panel_settings
                             </div>
                             <div>
                                 <Link to="/login" onClick={() => {
-                                    if (window.confirm("ban co muon dang xuat khong ")) {
+                                    if (window.confirm("Do you want to log out? ")) {
                                         localStorage.removeItem("token")
                                         dispatch(userLoginActions.logOut())
                                         navigate("/login")
@@ -142,26 +140,7 @@ admin_panel_settings
                         <Link to="/login" className='registerIcon'><i style={{ color: "black", padding: "0px 25px 8px 25px" }} className="fa-regular fa-user"></i></Link>}
                 </div>
             </div>
-            {showSearch ?
-                (<div className='searchItem' style={{position:"absolute", top: "-20px",backgroundColor:"#fff"}}>
-                    {productStore.searchData?.map((item) =>
-                        <div className='itemSearch'  >
-                            <div className='imgItem'>
-                                <img src={item.url} alt="" />
-                            </div>
-                            <div className='detailItemSearch'>
-                                <h6>{item.name}</h6>
-                                <p>Price:{item.price}</p>
-                                <p>In Stock :{item.stock}</p>
-                                <Link to={"/detail/" + `${item.id}`} onClick={() => {
-                                    setShowSearch(false);
-                                    setValueSearch("")
-                                }}>Detail</Link>
-                            </div>
-                        </div>
-                    )}
-
-                </div>) : <></>}
+            
         </div>
 
     )

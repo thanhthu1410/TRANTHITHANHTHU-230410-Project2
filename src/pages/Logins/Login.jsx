@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loading from '@components/Loadings/Loading'
 import { userLoginActions } from '@stores/slices/userLogin.slice'
 import { useNavigate } from 'react-router-dom'
+import { message } from "antd"
 
 
 
@@ -44,7 +45,7 @@ export default function Login() {
             eventForm.preventDefault(); // vô hiệu hành vi mặc định form
 
             if (eventForm.target.inputUserEmail.value == "" || eventForm.target.inputPassword.value == "") {
-              alert("vui lòng điền đầy đủ các trường")
+              message.warning("Please check your information")
               return
             }
 

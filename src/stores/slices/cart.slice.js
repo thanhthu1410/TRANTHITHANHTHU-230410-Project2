@@ -35,6 +35,13 @@ const cartsSlice = createSlice({
                 });
             }
         },
+        updateCartLocal: (state, action) => {
+            return action.payload;
+        },
+        followCartLocal: (state, action) => {
+            
+            return state;
+        }
     },
 });
 

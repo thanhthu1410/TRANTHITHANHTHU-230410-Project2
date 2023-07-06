@@ -16,17 +16,7 @@
           "address": "42 tu cuong "
         }
       ],
-      "carts": [
-        {
-          "productId": 3,
-          "quantity": 1,
-          "des": "hello baby 10000",
-          "url": "../image/hoabo/bo3.jpg",
-          "name": "Full Of Loves",
-          "price": 99,
-          "time": "9:18 AM 6-7-2023"
-        }
-      ],
+      "carts": [],
       "receipt": [
         {
           "productId": 2,
@@ -40,64 +30,78 @@
       ]
     },
     {
-      "userName": "tai@gmail.com",
-      "email": "tai@gmail.com",
+      "userName": "ntbphuoc",
+      "email": "ntbphuoc@gmail.com",
       "password": "123",
       "isAdmin": false,
       "firstName": "New",
       "lastName": "Member",
-      "avatar": "https://i.pinimg.com/564x/c8/49/d3/c849d35b6502f1e9918b4f1d5e43f10a.jpg",
-      "id": 3,
-      "information": [
-        {
-          "name": "Do thanh công",
-          "phone": "098765432",
-          "address": "pham van bach "
-        }
-      ],
-      "carts": [],
-      "receipt": []
-    },
-    {
-      "userName": "thanh thu ",
-      "email": "thanhthu@gmail.com",
-      "password": "12345",
-      "isAdmin": false,
-      "firstName": "New",
-      "lastName": "Member",
-      "avatar": "https://i.pinimg.com/564x/c8/49/d3/c849d35b6502f1e9918b4f1d5e43f10a.jpg",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/project-two-92d27.appspot.com/o/UserAvatar%2Fava.jpg?alt=media&token=c47096e1-8086-4ee6-a8c8-a7b032fdc93d",
       "carts": [
         {
           "productId": 2,
           "quantity": 1,
-          "des": "hello baby",
+          "des": "hello baby 10000",
           "url": "../image/hoabo/bo2.jpg",
           "name": "Pinkky Love",
-          "price": 99
+          "price": 99,
+          "time": "5:27 PM 6-7-2023"
         }
       ],
-      "information": [
-        {
-          "name": "Thanh Thu ",
-          "phone": "0919770405",
-          "address": "155 dang van ngu "
-        }
-      ],
-      "id": 4,
-      "receipt": []
+      "information": [],
+      "receipt": [],
+      "id": 4
     },
     {
-      "userName": "Kien nè",
-      "email": "kien@gmail.com",
-      "password": "123",
+      "userName": "thanhthu",
+      "email": "thanhthu@gmail.com",
+      "password": "123456",
       "isAdmin": false,
       "firstName": "New",
       "lastName": "Member",
-      "avatar": "https://i.pinimg.com/564x/c8/49/d3/c849d35b6502f1e9918b4f1d5e43f10a.jpg",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/project-two-92d27.appspot.com/o/UserAvatar%2FavatarUser.jpg?alt=media&token=959d12d4-0400-40a3-8718-4d76576c42c1",
+      "carts": [],
+      "information": [
+        {
+          "name": "Tran Thi Thanh Thu",
+          "phone": "0919770405",
+          "address": "99 Dang Van Ngu "
+        }
+      ],
+      "receipt": [
+        {
+          "productId": 11,
+          "quantity": 1,
+          "des": "hello baby 10000",
+          "url": "../image/hoacuoi/hoacuoi3.jpg",
+          "name": "Because Of You",
+          "price": 199,
+          "time": "11:35 PM 6-7-2023"
+        },
+        {
+          "productId": 18,
+          "quantity": 2,
+          "des": "hello baby 10000",
+          "url": "../image/hoalan/lan2.jpg",
+          "name": "Phuc Loc ",
+          "price": 299,
+          "time": "11:35 PM 6-7-2023"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "userName": "thanhthu",
+      "email": "thanhthu@gmail.com",
+      "password": "123456",
+      "isAdmin": false,
+      "firstName": "New",
+      "lastName": "Member",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/project-two-92d27.appspot.com/o/UserAvatar%2FavatarUser.jpg?alt=media&token=d36481eb-e07b-4e88-991c-f832b155a608",
       "carts": [],
       "information": [],
       "receipt": [],
-      "id": 5
+      "id": 6
     }
   ],
   "products": [
@@ -356,6 +360,14 @@
       "type": "hophoa",
       "url": "../image/hophoa/hophoa8.jpg",
       "stock": 5
+    },
+    {
+      "name": "LoveLy Pooney",
+      "price": "199",
+      "stock": "5",
+      "type": "hoabo",
+      "url": "https://firebasestorage.googleapis.com/v0/b/project-two-92d27.appspot.com/o/productImages%2FhoaboAdd.jpg?alt=media&token=256e26b9-dd6a-4696-9848-bc6c76b382b4",
+      "id": 33
     }
   ]
 }

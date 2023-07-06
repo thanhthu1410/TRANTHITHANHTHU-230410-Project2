@@ -44,6 +44,14 @@ const createReceipt = createAsyncThunk(
     }
 )
 
+const addNewProduct = createAsyncThunk(
+    "addNewProduct",
+    async(newProduct)=>{
+        let res = await axios.post(process.env.REACT_APP_SERVER_JSON + 'products', newProduct);
+        return res.data
+    }
+)
+
 const productSlice = createSlice(
     {
         name : "product",
@@ -96,6 +104,11 @@ const productSlice = createSlice(
         
                 
             });
+
+            // add new product
+            builder.addCase(addNewProduct.fulfilled, (state,action)=>{
+                console.log("action.payload new product",action.payload)  
+            })
           
         }
 
@@ -108,6 +121,7 @@ export const productActions = {
     filterProductByType,
     filterProductById,
     searchProductByName,
-    createReceipt
+    createReceipt,
+    addNewProduct
 }
 export default productSlice.reducer

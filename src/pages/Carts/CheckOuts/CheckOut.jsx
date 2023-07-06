@@ -1,31 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../../../stores/slices/products.slice';
+import {userLoginActions} from "@stores/slices/userLogin.slice"
 import "./CheckOut.scss"
 import {  message} from 'antd';
 import { useNavigate } from 'react-router-dom';
 export default function CheckOut() {
     const userLoginStore = useSelector(store => store.userLoginStore)
-    const [name,setName] = useState(userLoginStore.userInfor.information.length > 0 ? userLoginStore.userInfor.information[0].name : "")
-    const [phone,setPhone] = useState(userLoginStore.userInfor.information.length > 0 ? userLoginStore.userInfor.information[0].phone : "")
-    const [address,setAddress] = useState(userLoginStore.userInfor.information.length > 0 ? userLoginStore.userInfor.information[0].address : "" )
+
+    const [name,setName] = useState("")
+    const [phone,setPhone] = useState("")
+    const [address,setAddress] = useState("")
     const[date,setDate] = useState("")
-   
-    const [email,setEmail] = useState(userLoginStore.userInfor.email)
+    const [email,setEmail] = useState("")
+
     const dispatch = useDispatch()
     const navigate =  useNavigate()
     
     useEffect(() => {
-        console.log("thu ne ", userLoginStore.userInfor);
-
+        dispatch(userLoginActions.checkTokenLocal(localStorage.getItem("token")))
     }, [])
 
-    if(userLoginStore.userInfor.information.length > 0){
-        console.log("information",userLoginStore.userInfor.information[0].address);
-    }else{
-        console.log("khong co lich su ");
-        return
-    }
+    useEffect(() => {
+        if (userLoginStore.userInfor != null) {
+            if(userLoginStore.userInfor.information.length > 0) {
+                setName(userLoginStore.userInfor.information[0].name)
+                setPhone(userLoginStore.userInfor.information[0].phone)
+                setAddress(userLoginStore.userInfor.information[0].address)
+            }
+        }
+
+    }, [userLoginStore.userInfor])
     return (
         <div className='containerCheckOut'>
         

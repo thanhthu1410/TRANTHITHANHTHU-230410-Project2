@@ -15,6 +15,10 @@
             .imageItem{
                 img{
                    width: 100%;
+                   transition: all 1s;
+                   &:hover {
+                        transform: rotateY(360deg);
+                    }
                 }
             }
             .itemDetail{

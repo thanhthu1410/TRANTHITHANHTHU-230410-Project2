@@ -36,32 +36,39 @@ export default function CartItem({ item, setCartData, cartData }) {
     }
 
     
-    function handleChangeQuantityProduct(productCart) {
-        let updatedCart = cartData.map((product) => {
-            if (product.productId === productCart.productId) {
-                return productCart;
-            } else {
-                return product;
-            }
-        });
+   
 
+    function handleChangeQuantityProduct(productCart) {
+        const updatedCart = cartData.map((product) => {
+          if (product.productId === productCart.productId) {
+            return {
+              ...product,
+              quantity: productCart.quantity,
+            };
+          }
+          return product;
+        });
+      
+        setCartData(updatedCart); // Update the local state with the updated cart data
+      
         dispatch(
-            userLoginActions.updateCart({
-                userId: userLoginStore.userInfor.id,
-                carts: {
-                    carts: updatedCart,
-                },
-            })
+          userLoginActions.updateCart({
+            userId: userLoginStore.userInfor.id,
+            carts: {
+              carts: updatedCart,
+            },
+          })
         );
-    }
+      }
+      
 
     return (
-        <div style={{ border: "1px solid" }} className='itemContainer'>
+        <div style={{ border: "1px solid", borderRadius:"10px" ,marginBottom:"5px"}} className='itemContainer'>
 
 
             <div className='item'>
                 <div className='itemImage'>
-                    <img src={item?.url} alt="" />
+                    <img style={{borderRadius:"8px"}} src={item?.url} alt="" />
                 </div>
                 <div className='detailItem'>
                     <h5>Name :{item?.name}</h5>
